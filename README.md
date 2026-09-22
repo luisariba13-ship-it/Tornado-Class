@@ -31,7 +31,6 @@ Cada versión del proyecto será documentada de manera independiente para conser
 
 **Lenguajes utilizados:**
 - C
-- Python
 
 **Estado:** En desarrollo
 
