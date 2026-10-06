@@ -1,57 +1,81 @@
-# Programación Avanzada - UPAEP
+# Un simulador de Computadora
 
-Repositorio académico de **Luis Ernesto Arias Castellanos**, estudiante de **Ingeniería de Software** en la **Universidad Popular Autónoma del Estado de Puebla (UPAEP)**.
+Proyecto académico desarrollado para la materia de **Programación Avanzada** de la **Universidad Popular Autónoma del Estado de Puebla (UPAEP)**.
 
-Este repositorio está destinado a almacenar los proyectos, prácticas y actividades desarrolladas durante la materia de **Programación Avanzada**.
+Este proyecto está enfocado en el desarrollo de un simulador de computadora llamado **Simpletron**, el cual permite cargar y ejecutar instrucciones mediante una memoria y diferentes registros que representan el funcionamiento básico de una computadora.
 
-Su propósito es mantener organizado el trabajo realizado durante el curso y documentar el progreso de los diferentes proyectos conforme se desarrollan nuevas versiones y funcionalidades.
+El proyecto se desarrolla de manera progresiva, incorporando nuevas características y modificaciones conforme avanzan las actividades de la materia.
 
 ---
 
-## Información académica
+## Información del proyecto
 
-- **Nombre:** Luis Ernesto Arias Castellanos
+- **Proyecto:** Un simulador de Computadora
+- **Nombre:** Simpletron
 - **Universidad:** Universidad Popular Autónoma del Estado de Puebla (UPAEP)
 - **Carrera:** Ingeniería de Software
 - **Materia:** Programación Avanzada
 - **Periodo:** Otoño 2026
-- **Tipo de repositorio:** Académico
+- **Tipo de proyecto:** Académico
 
 ---
 
-## Proyectos
+## Descripción
 
-### 1. Un simulador de Computadora
+Simpletron es un simulador de computadora que cuenta con una memoria de **100 posiciones** y diferentes registros para controlar la ejecución de instrucciones.
 
-Proyecto enfocado en el desarrollo de un simulador de computadora llamado **Simpletron**.
+El simulador permite cargar programas, ejecutar operaciones y visualizar el estado final de la memoria y los registros.
 
-El proyecto se desarrolla de manera progresiva, incorporando nuevas características y modificaciones conforme avanzan las actividades de la materia.
+Entre sus principales funcionalidades se encuentran:
 
-Cada versión del proyecto será documentada de manera independiente para conservar un registro de su evolución.
+- Carga de instrucciones y datos.
+- Lectura y escritura de información.
+- Operaciones aritméticas.
+- Saltos condicionales e incondicionales.
+- Control mediante un acumulador.
+- Detección de errores.
+- Visualización de registros.
+- Visualización de la memoria.
 
-**Lenguajes utilizados:**
+---
+
+## Códigos de operación
+
+El simulador utiliza diferentes códigos para representar las instrucciones que puede ejecutar:
+
+| Código | Operación |
+|---|---|
+| `10` | READ |
+| `11` | WRITE |
+| `20` | LOAD |
+| `21` | STORE |
+| `30` | ADD |
+| `31` | SUBTRACT |
+| `32` | DIVIDE |
+| `33` | MULTIPLY |
+| `40` | BRANCH |
+| `41` | BRANCHNEG |
+| `42` | BRANCHZERO |
+| `43` | HALT |
+
+---
+
+## Lenguaje utilizado
+
+**Lenguaje:**
 - C
 
 **Estado:** En desarrollo
 
 ---
 
-## Organización del repositorio
-
-El repositorio se irá actualizando conforme se agreguen nuevos proyectos y actividades.
+## Organización del proyecto
 
 ```text
-Tornado_class/
+Un-simulador-de-Computadora/
 │
 ├── README.md
 │
-├── index.html
-│
-│
-├── Un-simulador-de-Computadora/
-│   ├── README.md
-│   ├── código fuente
-│   ├── pruebas
-│   └── documentación
+├── Simpletron.c
 │
 └── ...
