@@ -1,162 +1,91 @@
-# Un compilador de Simple
 
-Proyecto académico desarrollado para la materia de **Programación Avanzada** de la **Universidad Popular Autónoma del Estado de Puebla (UPAEP)**.
+# Compilador Simple
 
-Este proyecto está enfocado en el desarrollo de un compilador para el lenguaje **Simple**, el cual permite traducir instrucciones a lenguaje máquina **SML (Simpletron Machine Language)** para su posterior ejecución en el simulador Simpletron.
+Proyecto enfocado en el desarrollo de un compilador para el lenguaje **Simple**, utilizando programación en C y estructuras de datos básicas.
 
-El proyecto se desarrolla de manera progresiva, incorporando nuevas características y modificaciones conforme avanzan las actividades de la materia.
-
----
-
-## Información del proyecto
-
-- **Proyecto:** Un compilador de Simple
-- **Nombre:** Compilador Simple
-- **Universidad:** Universidad Popular Autónoma del Estado de Puebla (UPAEP)
-- **Carrera:** Ingeniería de Software
-- **Materia:** Programación Avanzada
-- **Periodo:** Otoño 2026
-- **Tipo de proyecto:** Académico
+El proyecto se desarrolla de manera progresiva, incorporando nuevas funcionalidades y modificaciones.
 
 ---
 
 ## Descripción
 
-El compilador Simple es un programa que permite leer instrucciones escritas en el lenguaje Simple y traducirlas a instrucciones SML, utilizando una memoria de **100 posiciones**.
+El compilador Simple es un programa desarrollado en lenguaje C que permite leer instrucciones desde un archivo de texto, identificar comandos y generar instrucciones en lenguaje máquina SML.
 
-El proceso de compilación se desarrolla mediante dos pasadas principales y una tercera etapa de ejecución en el simulador Simpletron.
+El compilador utiliza una memoria de **100 posiciones**, una tabla de símbolos y diferentes funciones para procesar las instrucciones.
 
 Entre sus principales funcionalidades se encuentran:
 
-- Lectura de archivos con instrucciones Simple.
-- Identificación de comandos y variables.
+- Lectura de archivos de texto.
+- Identificación de instrucciones.
+- Manejo de variables y constantes.
 - Construcción de una tabla de símbolos.
 - Asignación de posiciones de memoria.
 - Generación de instrucciones SML.
-- Manejo de constantes y variables.
 - Identificación de saltos pendientes.
-- Resolución de referencias mediante una segunda pasada.
-- Generación de archivos con instrucciones SML.
+- Generación automática de archivos.
 
 ---
 
 ## Primera pasada
 
-La primera pasada consiste en leer el programa escrito en Simple, identificar sus instrucciones y generar el código SML inicial.
+La primera pasada consiste en leer las instrucciones del archivo `programa.simple` y generar las instrucciones SML correspondientes.
 
-Durante este proceso se construye una tabla de símbolos que almacena los números de línea, variables y constantes utilizados en el programa.
+Durante este proceso se identifican los números de línea, variables y constantes, almacenando su información en una tabla de símbolos.
 
 Entre sus principales funciones se encuentran:
 
-- Lectura del archivo `programa.simple`.
-- Separación de instrucciones mediante `strtok()`.
-- Identificación de los comandos del lenguaje Simple.
-- Registro de variables, constantes y números de línea.
+- Lectura de instrucciones mediante `fgets()`.
+- Separación de cadenas mediante `strtok()`.
+- Identificación de comandos mediante `strcmp()`.
+- Registro de símbolos utilizando `struct`.
+- Búsqueda de variables y constantes.
 - Asignación de ubicaciones en memoria.
-- Generación de instrucciones SML.
-- Registro de saltos pendientes mediante el arreglo `flags`.
-- Generación del archivo `primera_pasada.sml`.
-
-### Tabla de símbolos
-
-La tabla de símbolos almacena la información de los elementos utilizados durante la compilación.
-
-| Campo | Descripción |
-|---|---|
-| `symbol` | Símbolo encontrado |
-| `type` | Tipo de símbolo |
-| `location` | Ubicación en memoria |
-
-Los símbolos se clasifican en:
-
-- **L:** Número de línea.
-- **V:** Variable.
-- **C:** Constante.
-
-Las instrucciones SML se almacenan desde la posición `00`, mientras que las variables y constantes se almacenan desde la posición `99` hacia atrás.
+- Almacenamiento de instrucciones en arreglos.
+- Registro de saltos pendientes mediante `flags`.
+- Escritura de instrucciones en un archivo SML.
 
 ---
 
 ## Segunda pasada
 
-La segunda pasada se encarga de resolver las referencias pendientes generadas durante la primera pasada.
-
-Estas referencias aparecen cuando una instrucción realiza un salto hacia una línea que todavía no había sido procesada.
+La segunda pasada consiste en revisar las instrucciones generadas durante la primera pasada para completar las referencias pendientes.
 
 Entre sus principales funciones se encuentran:
 
 - Recorrido del arreglo `flags`.
-- Identificación de saltos pendientes.
-- Búsqueda de números de línea en la tabla de símbolos.
+- Identificación de referencias pendientes.
+- Búsqueda de símbolos en la tabla.
 - Obtención de ubicaciones en memoria.
-- Modificación de instrucciones SML.
-- Generación del archivo `programa.sml`.
-
-Por ejemplo, una instrucción pendiente:
-
-`+4000`
-
-Puede convertirse en:
-
-`+4004`
-
-Cuando se identifica que la línea de destino corresponde a la posición `04` de memoria.
+- Actualización de instrucciones SML.
+- Generación del archivo final.
 
 ---
 
-## Tercera etapa: Ejecución en Simpletron
+## Tercera etapa
 
-La tercera etapa consiste en ejecutar las instrucciones SML generadas por el compilador mediante el simulador Simpletron.
-
-Esta etapa permite comprobar el funcionamiento del programa compilado.
+La tercera etapa consiste en utilizar las instrucciones generadas por el compilador para su ejecución mediante el simulador Simpletron.
 
 Entre sus principales funciones se encuentran:
 
-- Lectura del archivo `programa.sml`.
+- Lectura del archivo SML.
 - Carga de instrucciones en memoria.
-- Inicialización de registros.
-- Ejecución de instrucciones SML.
-- Lectura y escritura de datos.
-- Operaciones aritméticas.
-- Saltos condicionales e incondicionales.
+- Procesamiento de instrucciones.
+- Manejo de registros.
+- Ejecución de operaciones.
 - Visualización de resultados.
 
 ---
 
-## Instrucciones del lenguaje Simple
+## Estructuras de datos utilizadas
 
-El compilador utiliza diferentes comandos para representar las operaciones de un programa.
-
-| Comando | Descripción |
+| Estructura | Función |
 |---|---|
-| `rem` | Comentario |
-| `input` | Lectura de datos |
-| `print` | Escritura de datos |
-| `let` | Asignación de valores |
-| `goto` | Salto incondicional |
-| `if/goto` | Salto condicional |
-| `end` | Finalización del programa |
-
----
-
-## Códigos de operación
-
-El compilador genera instrucciones SML utilizando los siguientes códigos de operación:
-
-| Código | Operación |
-|---|---|
-| `10` | READ |
-| `11` | WRITE |
-| `20` | LOAD |
-| `21` | STORE |
-| `30` | ADD |
-| `31` | SUBTRACT |
-| `32` | DIVIDE |
-| `33` | MULTIPLY |
-| `40` | BRANCH |
-| `41` | BRANCHNEG |
-| `42` | BRANCHZERO |
-| `43` | HALT |
+| `struct` | Representar símbolos |
+| Arreglos | Almacenar instrucciones |
+| Tabla de símbolos | Registrar variables y constantes |
+| `flags` | Registrar referencias pendientes |
+| Apuntadores | Manejar archivos y cadenas |
+| Pilas | Procesar expresiones aritméticas |
 
 ---
 
@@ -169,11 +98,16 @@ El compilador genera instrucciones SML utilizando los siguientes códigos de ope
 - `stdio.h`
 - `string.h`
 
-**Estructuras de datos:**
+**Conceptos de programación:**
+- Variables.
+- Funciones.
+- Estructuras.
 - Arreglos.
-- Estructuras (`struct`).
 - Apuntadores.
-- Pilas.
+- Ciclos.
+- Condicionales.
+- Manejo de archivos.
+- Cadenas de caracteres.
 
 **Estado:** En desarrollo
 
@@ -181,26 +115,32 @@ El compilador genera instrucciones SML utilizando los siguientes códigos de ope
 
 ## Organización del proyecto
 
-```text
-Compilador-Simple/
-│
-├── README.md
-│
-├── compilador.c
-│
-├── programa.simple
-│
-├── primera_pasada.sml
-│
-└── programa.sml
-```
+    Compilador-Simple/
+    │
+    ├── README.md
+    ├── compilador.c
+    ├── programa.simple
+    ├── primera_pasada.sml
+    └── programa.sml
+
+---
+
+## Compilación
+
+Para compilar el programa utilizando GCC:
+
+    gcc compilador.c -o compilador
+
+Para ejecutarlo en Windows:
+
+    .\compilador.exe
 
 ---
 
 ## Estado del proyecto
 
 - **Primera pasada:** Desarrollada.
-- **Segunda pasada:** Pendiente de implementación.
-- **Tercera etapa:** Pendiente de integración con Simpletron.
+- **Segunda pasada:** Pendiente.
+- **Tercera etapa:** Pendiente.
 
-El proyecto continuará desarrollándose de manera progresiva, incorporando nuevas funcionalidades hasta completar el proceso de compilación y ejecución de instrucciones SML.
+El proyecto continuará desarrollándose de manera progresiva, aplicando conocimientos de programación estructurada y estructuras de datos en lenguaje C.
