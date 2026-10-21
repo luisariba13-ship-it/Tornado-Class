@@ -1,0 +1,7 @@
+10 rem Programa de prueba
+20 input x
+30 let y = x + 1
+40 if y > x goto 60
+50 goto 70
+60 print y
+70 end
